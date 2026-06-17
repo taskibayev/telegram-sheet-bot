@@ -47,3 +47,21 @@ function logDebug(title, data) {
     data
   ]);
 }
+
+function getUsersCount() {
+  const config = getConfig();
+  const sheet = getSheet(config.SHEETS.USERS);
+
+  const lastRow = sheet.getLastRow();
+
+  return Math.max(lastRow - 1, 0);
+}
+
+function getMessagesCount() {
+  const config = getConfig();
+  const sheet = getSheet(config.SHEETS.MESSAGES);
+
+  const lastRow = sheet.getLastRow();
+
+  return Math.max(lastRow - 1, 0);
+}

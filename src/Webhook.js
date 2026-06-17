@@ -22,6 +22,9 @@ function doPost(e) {
 
     saveOrUpdateUser(userData);
     saveMessage(userData);
+    if (!userData.text.startsWith('/')) {
+      notifyAdmin(userData);
+    }
     handleCommand(userData);
 
     return HtmlService.createHtmlOutput('OK');
@@ -30,8 +33,4 @@ function doPost(e) {
     logDebug('ERROR', error.toString());
     return HtmlService.createHtmlOutput('ERROR');
   }
-}
-
-function testSecrets() {
-  Logger.log(getConfig());
 }

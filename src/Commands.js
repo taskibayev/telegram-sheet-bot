@@ -17,6 +17,29 @@ function handleCommand(data) {
     return;
   }
 
+  if (text === '/stats') {
+    if (!isAdmin(data.telegramId)) {
+      sendTelegramMessage(
+        data.telegramId,
+        'You do not have permission to use this command.'
+      );
+      return;
+    }
+
+    const usersCount = getUsersCount();
+    const messagesCount = getMessagesCount();
+
+    sendTelegramMessage(
+      data.telegramId,
+`📊 Bot Statistics
+
+👥 Users: ${usersCount}
+💬 Messages: ${messagesCount}`
+    );
+
+    return;
+  }
+
   sendTelegramMessage(
     data.telegramId,
     'Your message has been saved. Thank you!'

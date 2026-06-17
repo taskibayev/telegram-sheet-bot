@@ -13,3 +13,9 @@ function getConfig() {
     }
   };
 }
+
+function isAdmin(telegramId) {
+  const config = getConfig();
+
+  return String(telegramId) === String(config.ADMIN_TELEGRAM_ID);
+}
